@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+  --color-yellow: #F6E123;
+  --color-grey: #B8B6B6;
+  --color-dark: #7D7D7D;
+  --color-darker: #3D3C3A;
+  --color-black: #0D0C0C;
+  --color-white: #F5F5F5;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+
+
+body {
+  font-family: theme("fontFamily.sans");
+  background-color: theme("colors.background");
+  color: theme("colors.foreground");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: theme("fontFamily.sans");
+}
