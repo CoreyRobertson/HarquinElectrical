@@ -19,3 +19,14 @@ export default function Home() {
     </div>
   );
 }
+
+// To do: 
+// Google Business Profile
+// // Service Pages
+// SEO optimization
+// Favicon
+// Add real photos
+// Proof read and amend content in about section
+// Back end build for form->email - need access to Mick's account, could be done last thing
+
+

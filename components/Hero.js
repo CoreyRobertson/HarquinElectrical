@@ -34,6 +34,7 @@ const Hero = () => {
 
             {/* Content */}
             <div className="relative z-10 max-w-3xl text-left">
+                <p className='py-4 text-[var(--color-yellow)] text-lg sm:text-xl font-light tracking-wide'>FULLY LICENSED, MELBOURNE BASED ELECTRICIANS</p>
                 <h1 className="text-4xl sm:text-6xl font-light leading-tight text-[var(--color-white)] tracking-tight">
                     Powering Your Home & Business.
                 </h1>
