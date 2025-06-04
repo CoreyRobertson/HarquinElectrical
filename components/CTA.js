@@ -6,25 +6,42 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
     const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState("idle");
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form Submitted:", formData);
-        setSubmitted(true);
-        setFormData({ name: "", email: "", message: "" }); // Reset form after submission
+        setStatus("loading");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                setFormData({ name: "", email: "", phone: "", message: "" });
+                setStatus("success");
+            } else {
+                setStatus("error");
+            }
+        } catch (err) {
+            console.error(err);
+            setStatus("error");
+        }
     };
 
     return (
         <section id="contact" className="w-full py-16 bg-[var(--color-black)] text-[var(--color-white)] font-sans">
             <div className="w-full xl:w-[70vw] mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
                 {/* Left Side - Call to Action */}
                 <div ref={ref}>
                     <h2 className="text-3xl sm:text-5xl font-thin tracking-wide relative inline-block">
@@ -44,7 +61,7 @@ const ContactForm = () => {
                     {/* Call Now Button */}
                     <div className="mt-6 flex gap-4">
                         <a
-                            href="tel:+1234567890"
+                            href="tel:+61458003175"
                             className="flex items-center gap-2 px-5 py-3 border border-[var(--color-yellow)] text-[var(--color-yellow)] rounded-lg font-mono hover:bg-[var(--color-yellow)] hover:text-[var(--color-black)] transition"
                         >
                             <FiPhone />
@@ -68,7 +85,7 @@ const ContactForm = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg bg-[var(--color-white)] text-[var(--color-black)] focus:border-[var(--color-yellow)] outline-none"
+                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg focus:border-[var(--color-yellow)] outline-none"
                             />
                             <input
                                 type="email"
@@ -77,7 +94,15 @@ const ContactForm = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg bg-[var(--color-white)] text-[var(--color-black)] focus:border-[var(--color-yellow)] outline-none"
+                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg focus:border-[var(--color-yellow)] outline-none"
+                            />
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Phone Number"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg focus:border-[var(--color-yellow)] outline-none"
                             />
                             <textarea
                                 name="message"
@@ -86,14 +111,17 @@ const ContactForm = () => {
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg bg-[var(--color-white)] text-[var(--color-black)] focus:border-[var(--color-yellow)] outline-none"
+                                className="w-full p-3 border border-[var(--color-grey)] rounded-lg focus:border-[var(--color-yellow)] outline-none"
                             ></textarea>
                             <button
                                 type="submit"
                                 className="w-full px-6 py-3 text-lg font-semibold bg-[var(--color-yellow)] text-[var(--color-black)] rounded-lg shadow-md transition hover:bg-[var(--color-dark)] hover:text-[var(--color-white)] font-mono"
                             >
-                                Request a Quote
+                                {status === "loading" ? "Sending..." : "Request a Quote"}
                             </button>
+                            {status === "error" && (
+                                <p className="text-sm text-red-600 text-center">Something went wrong. Please try again.</p>
+                            )}
                         </form>
                     )}
                 </div>

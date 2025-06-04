@@ -31,15 +31,22 @@ const Navbar = () => {
             >
                 <div className="w-full xl:w-[70vw] mx-auto flex items-center justify-between px-6 sm:px-12 py-3">
                     {/* Logo */}
-                    <Link href="/">
+                    <Link href="/" className="relative w-[140px] aspect-[140/50] flex items-center">
                         <Image
-                            src={isDark ? "/images/HARQUINDARK.png" : "/images/HARQUIN-1.png"}
-                            width={140}
-                            height={50}
-                            alt="Harquin Logo"
-                            className="cursor-pointer transition-all duration-300"
+                            src="/images/HARQUIN-1.png"
+                            fill
+                            alt="Harquin Light Logo"
+                            className={`absolute top-0 left-0 object-contain transition-opacity duration-500 ${isDark ? "opacity-0" : "opacity-100"}`}
+                        />
+                        <Image
+                            src="/images/HARQUINDARK.png"
+                            fill
+                            alt="Harquin Dark Logo"
+                            className={`absolute top-0 left-0 object-contain transition-opacity duration-500 ${isDark ? "opacity-100" : "opacity-0"}`}
                         />
                     </Link>
+
+
 
                     {/* Desktop Nav */}
                     <ul className="hidden md:flex gap-6 text-lg font-light">

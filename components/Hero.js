@@ -34,10 +34,10 @@ const Hero = () => {
 
             {/* Content */}
             <div className="relative z-10 max-w-3xl text-left">
-                <h1 className="text-4xl sm:text-6xl font-thin text-[var(--color-white)] tracking-wide">
+                <h1 className="text-4xl sm:text-6xl font-light leading-tight text-[var(--color-white)] tracking-tight">
                     Powering Your Home & Business.
                 </h1>
-                <p className="mt-4 text-lg sm:text-xl text-[var(--color-grey)]">
+                <p className="mt-4 text-lg sm:text-xl font-light tracking-wide text-[var(--color-grey)]">
                     Reliable & efficient electrical solutions tailored to your needs.
                 </p>
 
@@ -45,13 +45,13 @@ const Hero = () => {
                 <div className="mt-6 flex flex-col sm:flex-row items-center sm:items-start gap-4">
                     <a
                         href="#services"
-                        className="w-[75%] sm:w-fit px-6 py-3 text-lg font-medium bg-[var(--color-yellow)] text-[var(--color-black)] rounded-lg shadow-md transition hover:bg-[var(--color-dark)] hover:text-[var(--color-white)] font-mono text-center"
+                        className="w-[75%] sm:w-fit px-6 py-3 text-sm sm:text-base font-medium bg-[var(--color-yellow)] text-[var(--color-black)] rounded-lg shadow-md transition hover:bg-[var(--color-dark)] hover:text-[var(--color-white)] text-center"
                     >
                         Our Services
                     </a>
                     <a
                         href="#contact"
-                        className="w-[75%] sm:w-fit px-6 py-3 text-lg font-medium border-[0.5px] border-[var(--color-yellow)] text-[var(--color-yellow)] rounded-lg transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-black)] font-mono text-center"
+                        className="w-[75%] sm:w-fit px-6 py-3 text-sm sm:text-base font-medium border border-[var(--color-yellow)] text-[var(--color-yellow)] rounded-lg transition hover:bg-[var(--color-yellow)] hover:text-[var(--color-black)] text-center"
                     >
                         Get a Quote
                     </a>
